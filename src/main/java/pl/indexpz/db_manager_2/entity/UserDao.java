@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class UserDao {
     //    CRUD
     private static final String CREATE_USER_QUERY = "INSERT INTO users (name, email, password) VALUES (?, ?, ?);";
-    private static final String READ_USER_QUERU = "SELECT * FROM users WHERE id = (?);";
+    private static final String READ_USER_QUERY = "SELECT * FROM users WHERE id = (?);";
     private static final String UPDATE_USER_QUERY = "UPDATE users SET name = (?), email = (?), password = (?) WHERE id = (?);";
     private static final String DELETE_USER_QUERY = "DELETE FROM users WHERE id = (?);";
 
@@ -51,7 +51,7 @@ public class UserDao {
     public User read(int userID) {
                     try (Connection db_workshop2_conn = DbUtil.conn(DB_NAME)) {
                 User user = new User();
-                PreparedStatement preparedStatement = db_workshop2_conn.prepareStatement(READ_USER_QUERU);
+                PreparedStatement preparedStatement = db_workshop2_conn.prepareStatement(READ_USER_QUERY);
                 preparedStatement.setInt(1, userID);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
